@@ -1,20 +1,23 @@
 package com.epw.academy.dto;
 
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class CreateCourseRequest {
 
     @NotBlank(message = "name is required")
-    @Size(max = 120, message = "name must be <= 120 characters")
+    @Size(max = 120, message = "name must be <= 120 chars")
     private String name;
 
-    @Size(max = 2000, message = "description must be <= 2000 characters")
+    @Size(max = 2000, message = "description must be <= 2000 chars")
     private String description;
 
-    @Min(value = 1, message = "credits must be >= 1")
-    private int credits;
+    @NotNull(message = "credits is required")
+    private Integer credits;
+
+    private Long instructorId;
 
     public String getName() {
         return name;
@@ -24,8 +27,12 @@ public class CreateCourseRequest {
         return description;
     }
 
-    public int getCredits() {
+    public Integer getCredits() {
         return credits;
+    }
+
+    public Long getInstructorId() {
+        return instructorId;
     }
 
     public void setName(String name) {
@@ -36,7 +43,39 @@ public class CreateCourseRequest {
         this.description = description;
     }
 
-    public void setCredits(int credits) {
+    public void setCredits(Integer credits) {
         this.credits = credits;
     }
+
+    public void setInstructorId(Long instructorId) {
+        this.instructorId = instructorId;
+    }
+
+public class CreateInstructorRequest {
+
+    @NotBlank(message = "name is required")
+    @Size(max = 120, message = "name must be <= 120 chars")
+    private String name;
+
+    @NotBlank(message = "email is required")
+    @Email(message = "email must be valid")
+    @Size(max = 150, message = "email must be <= 150 chars")
+    private String email;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
 }

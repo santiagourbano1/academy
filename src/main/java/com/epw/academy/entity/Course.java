@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -29,6 +31,10 @@ public class Course {
 
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
 
     @PrePersist
     void onCreate() {
@@ -56,6 +62,10 @@ public class Course {
         return createdAt;
     }
 
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -74,5 +84,9 @@ public class Course {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 }

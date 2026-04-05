@@ -7,8 +7,11 @@ public class CourseResponse {
     private Long id;
     private String name;
     private String description;
-    private int credits;
+    private Integer credits;
     private Instant createdAt;
+
+    private Long instructorId;
+    private String instructorName;
 
     public Long getId() {
         return id;
@@ -22,12 +25,20 @@ public class CourseResponse {
         return description;
     }
 
-    public int getCredits() {
+    public Integer getCredits() {
         return credits;
     }
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public Long getInstructorId() {
+        return instructorId;
+    }
+
+    public String getInstructorName() {
+        return instructorName;
     }
 
     public void setId(Long id) {
@@ -42,11 +53,19 @@ public class CourseResponse {
         this.description = description;
     }
 
-    public void setCredits(int credits) {
+    public void setCredits(Integer credits) {
         this.credits = credits;
     }
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setInstructorId(Long instructorId) {
+        this.instructorId = instructorId;
+    }
+
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
     }
 }
